@@ -1,0 +1,65 @@
+
+@model ArtifyAI.Models.AIImage
+
+@{
+    ViewData["Title"] = "Delete AI Image";
+}
+
+<section class="ai-gallery">
+    <div class="container">
+
+        <div class="gallery-heading">
+            <h1>Delete AI Image</h1>
+            <p>Are you sure you want to delete this artwork?</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <div class="gallery-card">
+
+                    <img src="@Url.Content("~/images/" + Model.Filename)"
+                         class="details-image"
+                         alt="@Model.Prompt" />
+
+                    <div class="gallery-content">
+
+                        <h2>@Model.ImageGenerator</h2>
+
+                        <p>
+                            <strong>Prompt:</strong>
+                            @Model.Prompt
+                        </p>
+
+                        <div class="alert alert-danger">
+                            Warning: This image will be
+                            permanently deleted.
+                        </div>
+
+                        <form asp-controller="AIImages"
+                              asp-action="Delete"
+                              asp-route-id="@Model.Id"
+                              method="post">
+
+                            @Html.AntiForgeryToken()
+
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                Yes, Delete Image
+                            </button>
+
+                            <a asp-action="Details"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-secondary">
+                                Cancel
+                            </a>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

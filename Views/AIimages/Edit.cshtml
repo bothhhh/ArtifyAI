@@ -1,0 +1,82 @@
+
+@model ArtifyAI.Models.AIImage
+
+@{
+    ViewData["Title"] = "Edit AI Image";
+}
+
+<section class="ai-gallery">
+    <div class="container">
+
+        <div class="gallery-heading">
+            <h1>Edit AI Image</h1>
+            <p>Update the information about this artwork.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+
+                <div class="gallery-card">
+
+                    <img class="details-image"
+                         src="@Url.Content("~/images/" + Model.Filename)"
+                         alt="@Model.Prompt" />
+
+                    <div class="gallery-content">
+
+                        <form asp-action="Edit"
+                              asp-route-id="@Model.Id"
+                              method="post">
+
+                            <input type="hidden" asp-for="Id" />
+
+                            <div asp-validation-summary="ModelOnly"
+                                 class="text-danger"></div>
+
+                            <div class="mb-3">
+                                <label asp-for="Prompt"
+                                       class="form-label"></label>
+
+                                <textarea asp-for="Prompt"
+                                          class="form-control"
+                                          rows="4"></textarea>
+
+                                <span asp-validation-for="Prompt"
+                                      class="text-danger"></span>
+                            </div>
+
+                            <div class="mb-3">
+                                <label asp-for="ImageGenerator"
+                                       class="form-label"></label>
+
+                                <input asp-for="ImageGenerator"
+                                       class="form-control" />
+
+                                <span asp-validation-for="ImageGenerator"
+                                      class="text-danger"></span>
+                            </div>
+
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Save Changes
+                            </button>
+
+                            <a asp-action="Details"
+                               asp-route-id="@Model.Id"
+                               class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

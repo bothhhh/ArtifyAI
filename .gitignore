@@ -1,0 +1,23 @@
+# .NET build files
+bin/
+obj/
+
+# Visual Studio
+.vs/
+.vscode/
+
+# Local database
+*.db
+*.db-shm
+*.db-wal
+
+# Local development settings
+appsettings.Development.json
+
+# User-specific files
+*.user
+*.suo
+
+# Operating system
+.DS_Store
+Thumbs.db

@@ -1,0 +1,204 @@
+﻿
+@{
+    ViewData["Title"] = "Home";
+}
+
+<!-- HERO SECTION -->
+<section class="artify-hero">
+    <div class="hero-content">
+        <h1>AI in Creative Arts</h1>
+
+        <p class="hero-subtitle">
+            Where Artificial Intelligence Meets Creativity
+        </p>
+
+        <p class="hero-description">
+            Artificial intelligence is transforming the creative
+            world by helping artists, musicians, and writers
+            explore new possibilities. From generating digital
+            artwork to composing music and supporting creative
+            writing, AI provides innovative tools that expand
+            human imagination and creativity.
+        </p>
+    </div>
+</section>
+
+<!-- MAIN CONTENT WITH PARALLAX BACKGROUND -->
+<section class="artify-content">
+
+    <!-- SECTION 1: AI ART -->
+    <div class="creative-section reveal-section">
+        <div class="creative-info">
+            <h2>AI-Generated Art</h2>
+            <p>
+                AI-generated art uses machine learning models
+                to create visual artwork from text prompts
+                and other inputs. These tools help artists
+                experiment with different styles, concepts,
+                and digital illustrations.
+            </p>
+            <a href="https://www.adobe.com/products/firefly.html"
+               target="_blank" rel="noopener noreferrer"
+               class="read-more">Read More</a>
+        </div>
+
+        <div class="creative-images">
+            <a href="https://www.adobe.com/products/firefly.html"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-art-1.jpg"
+                     alt="AI-generated digital artwork" />
+                <div class="card-overlay">
+                    <p>
+                        Adobe Firefly provides generative AI
+                        tools for creating and editing
+                        digital artwork.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://www.canva.com/ai-image-generator/"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-art-2.jpg"
+                     alt="Creative AI-generated illustration" />
+                <div class="card-overlay">
+                    <p>
+                        Canva offers AI-powered tools
+                        for creating images and visual designs.
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- SECTION 2: AI MUSIC -->
+    <div class="creative-section reveal-section">
+        <div class="creative-images">
+            <a href="https://suno.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-music-1.jpg"
+                     alt="AI music composition concept" />
+                <div class="card-overlay">
+                    <p>
+                        Suno is an AI music platform that
+                        helps users create songs from prompts.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://www.aiva.ai/"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-music-2.jpg"
+                     alt="AI-assisted music production" />
+                <div class="card-overlay">
+                    <p>
+                        AIVA supports the composition
+                        of original music using AI technology.
+                    </p>
+                </div>
+            </a>
+        </div>
+
+        <div class="creative-info">
+            <h2>AI Music Composition</h2>
+            <p>
+                Artificial intelligence is changing how
+                music is composed and produced. AI music
+                generators can create melodies, rhythms,
+                and complete musical arrangements, helping
+                musicians explore new creative ideas.
+            </p>
+            <a href="https://suno.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="read-more">Read More</a>
+        </div>
+    </div>
+
+    <!-- SECTION 3: AI WRITING -->
+    <div class="creative-section reveal-section">
+        <div class="creative-info">
+            <h2>AI Creative Writing</h2>
+            <p>
+                AI writing assistants support storytelling,
+                brainstorming, and content creation.
+                These tools can help writers develop
+                characters, generate ideas, and improve
+                their writing while maintaining their
+                own creative direction.
+            </p>
+            <a href="https://www.grammarly.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="read-more">Read More</a>
+        </div>
+
+        <div class="creative-images">
+            <a href="https://www.grammarly.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-writing-1.jpg"
+                     alt="AI writing assistant concept" />
+                <div class="card-overlay">
+                    <p>
+                        Grammarly provides AI-powered
+                        writing and editing assistance.
+                    </p>
+                </div>
+            </a>
+
+            <a href="https://www.sudowrite.com/"
+               target="_blank" rel="noopener noreferrer"
+               class="creative-card">
+                <img src="~/images/ai-writing-2.jpg"
+                     alt="AI creative storytelling concept" />
+                <div class="card-overlay">
+                    <p>
+                        Sudowrite offers AI-powered
+                        creative writing assistance.
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- AI IMAGE UPLOAD SECTION -->
+    <div class="upload-section">
+        <h2>Upload AI Images</h2>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <p>
+                Share your AI-generated artwork
+                with our creative community.
+            </p>
+
+            <a asp-controller="AIImages"
+               asp-action="Create"
+               class="upload-button">
+                Upload New AI Image
+            </a>
+        }
+        else
+        {
+            <p>
+                Please login or register to upload
+                your AI-generated artwork.
+            </p>
+
+            <a asp-area="Identity"
+               asp-page="/Account/Login"
+               class="upload-button">
+                Login
+            </a>
+
+            <a asp-area="Identity"
+               asp-page="/Account/Register"
+               class="upload-button">
+                Register
+            </a>
+        }
+    </div>
+
+</section>

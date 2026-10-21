@@ -1,0 +1,65 @@
+@model ArtifyAI.Models.AIImage
+
+@{
+    ViewData["Title"] = "AI Image Details";
+}
+
+<section class="ai-gallery">
+    <div class="container">
+
+        <div class="gallery-heading">
+            <h1>AI Image Details</h1>
+            <p>Explore the story behind this AI-generated artwork.</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <div class="gallery-card">
+
+                    <img src="@Url.Content("~/images/" + Model.Filename)"
+                         class="details-image"
+                         alt="@Model.Prompt" />
+
+                    <div class="gallery-content">
+
+                        <h2>@Model.ImageGenerator</h2>
+
+                        <h5>AI Prompt</h5>
+                        <p>@Model.Prompt</p>
+
+                        <h5>Upload Date</h5>
+                        <p>@Model.UploadDate.ToString("dd MMMM yyyy")</p>
+
+                        <h5>Likes</h5>
+                        <p>❤️ @Model.Likes</p>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-controller="AIImages"
+                            asp-action="Edit"
+                            asp-route-id="@Model.Id"
+                            class="btn btn-warning">
+                                Edit Image
+                            </a>
+
+                            <a asp-controller="AIImages"
+                            asp-action="Delete"
+                            asp-route-id="@Model.Id"
+                            class="btn btn-danger">
+                                Delete Image
+                            </a>
+
+                            <a asp-action="Index"
+                           class="btn btn-outline-primary">
+                            Back to Gallery
+                            </a>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

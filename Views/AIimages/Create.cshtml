@@ -1,0 +1,82 @@
+
+@model ArtifyAI.Models.AIImage
+
+@{
+    ViewData["Title"] = "Upload AI Image";
+}
+
+<section class="container py-5">
+    <h1 class="text-center mb-3">Upload AI Image</h1>
+
+    <p class="text-center mb-4">
+        Share your AI-generated artwork with the ArtifyAI community.
+    </p>
+
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-6">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+
+                    <form asp-action="Create"
+                          method="post"
+                          enctype="multipart/form-data">
+
+                        <div asp-validation-summary="ModelOnly"
+                             class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Prompt"
+                                   class="form-label"></label>
+                            <textarea asp-for="Prompt"
+                                      class="form-control"
+                                      rows="4"></textarea>
+                            <span asp-validation-for="Prompt"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ImageGenerator"
+                                   class="form-label"></label>
+                            <input asp-for="ImageGenerator"
+                                   class="form-control"
+                                   placeholder="e.g. Adobe Firefly" />
+                            <span asp-validation-for="ImageGenerator"
+                                  class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="imageFile" class="form-label">
+                                Choose AI Image
+                            </label>
+                            <input type="file"
+                                   id="imageFile"
+                                   name="imageFile"
+                                   class="form-control"
+                                   accept=".jpg,.jpeg,.png,.webp"
+                                   required />
+                            @Html.ValidationMessage(
+                                "imageFile",
+                                "",
+                                new { @class = "text-danger" })
+                        </div>
+
+                        <button type="submit"
+                                class="btn btn-primary w-100">
+                            Upload Image
+                        </button>
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary w-100 mt-2">
+                            Back to Gallery
+                        </a>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

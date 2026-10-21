@@ -1,0 +1,87 @@
+@{
+    ViewData["Title"] = "AI Creative Tools";
+}
+
+<section class="tools-page">
+    <div class="tools-heading">
+        <h1>Explore AI Creative Tools</h1>
+        <p>
+            Discover how artificial intelligence helps
+            artists, musicians and writers bring their
+            ideas to life.
+        </p>
+    </div>
+
+    <div class="tools-filter" role="group" aria-label="Filter AI tools">
+        <button type="button" class="tool-filter-btn active"
+                data-filter="all" aria-pressed="true">All Tools</button>
+        <button type="button" class="tool-filter-btn"
+                data-filter="art" aria-pressed="false">AI Art</button>
+        <button type="button" class="tool-filter-btn"
+                data-filter="music" aria-pressed="false">AI Music</button>
+        <button type="button" class="tool-filter-btn"
+                data-filter="writing" aria-pressed="false">AI Writing</button>
+    </div>
+
+    <div class="tools-grid">
+        <article class="tool-card" data-category="art">
+            <img src="~/images/ai-art-1.jpg" alt="Fantasy AI artwork" />
+            <div class="tool-card-body">
+                <h2>Adobe Firefly</h2>
+                <p>Create and edit digital artwork using generative AI.</p>
+                <a href="https://www.adobe.com/products/firefly.html"
+                   target="_blank" rel="noopener noreferrer">Explore Firefly</a>
+            </div>
+        </article>
+
+        <article class="tool-card" data-category="art">
+            <img src="~/images/ai-art-2.jpg" alt="Colourful digital artwork" />
+            <div class="tool-card-body">
+                <h2>Canva AI</h2>
+                <p>Generate images and experiment with creative designs.</p>
+                <a href="https://www.canva.com/ai-image-generator/"
+                   target="_blank" rel="noopener noreferrer">Explore Canva</a>
+            </div>
+        </article>
+
+        <article class="tool-card" data-category="music">
+            <img src="~/images/ai-music-1.jpg" alt="AI music studio" />
+            <div class="tool-card-body">
+                <h2>Suno</h2>
+                <p>Explore AI-assisted song and music generation.</p>
+                <a href="https://suno.com/"
+                   target="_blank" rel="noopener noreferrer">Explore Suno</a>
+            </div>
+        </article>
+
+        <article class="tool-card" data-category="music">
+            <img src="~/images/ai-music-2.jpg" alt="Digital music visualisation" />
+            <div class="tool-card-body">
+                <h2>AIVA</h2>
+                <p>Discover AI-assisted music composition.</p>
+                <a href="https://www.aiva.ai/"
+                   target="_blank" rel="noopener noreferrer">Explore AIVA</a>
+            </div>
+        </article>
+
+        <article class="tool-card" data-category="writing">
+            <img src="~/images/ai-writing-1.jpg" alt="AI storytelling illustration" />
+            <div class="tool-card-body">
+                <h2>Grammarly</h2>
+                <p>Improve and refine writing with AI-powered assistance.</p>
+                <a href="https://www.grammarly.com/"
+                   target="_blank" rel="noopener noreferrer">Explore Grammarly</a>
+            </div>
+        </article>
+
+        <article class="tool-card" data-category="writing">
+            <img src="~/images/ai-writing-2.jpg" alt="Creative writing illustration" />
+            <div class="tool-card-body">
+                <h2>Sudowrite</h2>
+                <p>Explore AI tools for fiction writing and brainstorming.</p>
+                <a href="https://www.sudowrite.com/"
+                   target="_blank" rel="noopener noreferrer">Explore Sudowrite</a>
+            </div>
+        </article>
+    </div>
+</section>
