@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<ArtifyAI.Models.AIImage>
 @{
     ViewData["Title"] = "Home";
 }
@@ -199,6 +199,62 @@
                 Register
             </a>
         }
+    </div>
+
+</section>
+
+<section class="home-uploaded-gallery">
+
+    <div class="container">
+
+        <div class="text-center mb-4">
+            <h2>Community AI Art Gallery</h2>
+            <p>
+                Explore AI-generated artwork uploaded
+                by the ArtifyAI community.
+            </p>
+        </div>
+
+        @if (Model != null && Model.Any())
+        {
+            <div class="home-art-grid">
+
+                @foreach (var image in Model)
+                {
+                    <a asp-controller="AIImages"
+                       asp-action="Details"
+                       asp-route-id="@image.Id"
+                       class="home-art-item">
+
+                        <img src="@Url.Content("~/images/" + image.Filename)"
+                             alt="@image.Prompt"
+                             loading="lazy" />
+
+                        <div class="home-art-overlay">
+                            <span>@image.ImageGenerator</span>
+                            <small>❤️ @image.Likes Likes</small>
+                        </div>
+
+                    </a>
+                }
+
+            </div>
+        }
+        else
+        {
+            <p class="text-center">
+                No AI images have been uploaded yet.
+            </p>
+        }
+
+        <div class="text-center mt-4">
+            <a asp-controller="AIImages"
+               asp-action="Index"
+               class="btn btn-primary">
+                View Full AI Gallery
+            </a>
+        </div>
+
     </div>
 
 </section>

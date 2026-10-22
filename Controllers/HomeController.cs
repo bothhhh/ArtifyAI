@@ -1,14 +1,28 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using ArtifyAI.Data;
 using ArtifyAI.Models;
 
 namespace ArtifyAI.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+    private readonly ApplicationDbContext _context;
+
+    public HomeController(ApplicationDbContext context)
     {
-        return View();
+        _context = context;
+    }
+
+    public async Task<IActionResult> Index()
+    {
+        var images = await _context.AIImages
+            .OrderByDescending(i => i.Likes)
+            .ThenByDescending(i => i.UploadDate)
+            .ToListAsync();
+
+        return View(images);
     }
 
     public IActionResult Privacy()
@@ -16,16 +30,21 @@ public class HomeController : Controller
         return View();
     }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }    
-
-
     public IActionResult Contact()
     {
         return View();
     }
 
+    [ResponseCache(
+        Duration = 0,
+        Location = ResponseCacheLocation.None,
+        NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel
+        {
+            RequestId = Activity.Current?.Id
+                ?? HttpContext.TraceIdentifier
+        });
+    }
 }

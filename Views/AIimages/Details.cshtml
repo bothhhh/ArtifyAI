@@ -32,29 +32,48 @@
                         <p>@Model.UploadDate.ToString("dd MMMM yyyy")</p>
 
                         <h5>Likes</h5>
-                        <p>❤️ @Model.Likes</p>
+                        <p class="ai-like-count">
+                            Likes: <span>@Model.Likes</span>
+                        </p>
+                        
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <form asp-controller="AIImages"
+                                asp-action="Like"
+                                asp-route-id="@Model.Id"
+                                method="post"
+                                class="mt-3">
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-primary">
+                                    ❤️ Like
+                                </button>
+
+                                <input type="hidden" name="returnToDetails" value="true" />
+                            </form>
+                        }
 
                         @if (User.IsInRole("Admin"))
                         {
-                            <a asp-controller="AIImages"
-                            asp-action="Edit"
+                            <a asp-action="Edit"
                             asp-route-id="@Model.Id"
                             class="btn btn-warning">
-                                Edit Image
+                                Edit
                             </a>
 
-                            <a asp-controller="AIImages"
-                            asp-action="Delete"
+                            <a asp-action="Delete"
                             asp-route-id="@Model.Id"
                             class="btn btn-danger">
-                                Delete Image
-                            </a>
-
-                            <a asp-action="Index"
-                           class="btn btn-outline-primary">
-                            Back to Gallery
+                                Delete
                             </a>
                         }
+
+                        <a asp-controller="AIImages"
+                        asp-action="Index"
+                        class="btn btn-secondary">
+                            Return to Gallery
+                        </a>
 
                     </div>
                 </div>

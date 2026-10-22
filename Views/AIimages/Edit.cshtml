@@ -1,4 +1,3 @@
-
 @model ArtifyAI.Models.AIImage
 
 @{
@@ -24,14 +23,15 @@
 
                     <div class="gallery-content">
 
-                        <form asp-action="Edit"
+                        <form asp-controller="AIImages"
+                              asp-action="Edit"
                               asp-route-id="@Model.Id"
-                              method="post">
+                              method="post"
+                              enctype="multipart/form-data">
+
+                            @Html.AntiForgeryToken()
 
                             <input type="hidden" asp-for="Id" />
-
-                            <div asp-validation-summary="ModelOnly"
-                                 class="text-danger"></div>
 
                             <div class="mb-3">
                                 <label asp-for="Prompt"
@@ -56,10 +56,27 @@
                                       class="text-danger"></span>
                             </div>
 
-                            <button type="submit"
-                                    class="btn btn-primary">
-                                Save Changes
-                            </button>
+                            <div class="mb-3">
+                                <label for="imageFile" class="form-label">
+                                    Replace Image (Optional)
+                                </label>
+
+                                <input type="file"
+                                    id="imageFile"
+                                    name="imageFile"
+                                    class="form-control"
+                                    accept=".jpg,.jpeg,.png,.webp" />
+
+                                <span class="text-danger"
+                                    asp-validation-for="Filename"></span>
+
+                                <small class="text-muted">
+                                    Leave this empty to keep the current image.
+                                    Maximum file size: 5 MB.
+                                </small>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
 
                             <a asp-action="Details"
                                asp-route-id="@Model.Id"

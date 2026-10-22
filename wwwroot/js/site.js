@@ -1,10 +1,4 @@
-﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
-
-
-document.addEventListener("DOMContentLoaded", function () {
+﻿document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".reveal-section");
 
     if (!("IntersectionObserver" in window)) {
@@ -32,6 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+
+/* =========================================
+   2. AI TOOLS CATEGORY FILTER
+========================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
     const filterButtons = document.querySelectorAll(".tool-filter-btn");
     const toolCards = document.querySelectorAll(".tool-card");
@@ -55,3 +54,75 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+/* =========================================
+   3. LIKE BUTTON WITHOUT PAGE RELOAD
+========================================= */
+
+document.addEventListener("submit", async function (event) {
+    const form = event.target;
+
+    if (!form.matches("form.ai-like-form")) {
+        return;
+    }
+
+    // Stop the browser from refreshing the page.
+    event.preventDefault();
+
+    const button = form.querySelector('button[type="submit"]');
+
+    if (!button || button.disabled) {
+        return;
+    }
+
+    button.disabled = true;
+
+    try {
+        const response = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            credentials: "same-origin",
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "Like request failed: " + response.status
+            );
+        }
+
+        const result = await response.json();
+
+        if (!result.success) {
+            throw new Error("Like was not saved.");
+        }
+
+        // Find the image card containing the Like button.
+        const card = form.closest(".gallery-card");
+
+        // Update the Likes count.
+        const count = card
+            ? card.querySelector(".ai-like-count span")
+            : document.querySelector(".ai-like-count span");
+
+        if (count) {
+            count.textContent = result.likes;
+        }
+
+        // Update the button.
+        button.textContent = "❤️ Liked";
+        button.disabled = true;
+
+    } catch (error) {
+        console.error("Like error:", error);
+
+        button.disabled = false;
+
+        alert("Could not save your Like. Please try again.");
+    }
+});
+
+console.log("ArtifyAI JavaScript loaded!");

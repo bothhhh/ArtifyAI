@@ -1,4 +1,3 @@
-
 @model IEnumerable<ArtifyAI.Models.AIImage>
 
 @{
@@ -44,9 +43,28 @@
 
                         <h5>@image.ImageGenerator</h5>
 
+                        <p class="ai-like-count">
+                            Likes: <span>@image.Likes</span>
+                        </p>
+
                         <p>@image.Prompt</p>
 
-                        <p>Likes: @image.Likes</p>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            <form asp-controller="AIImages"
+                                  asp-action="Like"
+                                  asp-route-id="@image.Id"
+                                  method="post"
+                                  class="ai-like-form">
+
+
+                                @Html.AntiForgeryToken()
+
+                                <button type="submit" class="btn btn-primary">
+                                    ❤️ Like
+                                </button>
+                            </form>
+                        }
 
                         <a asp-action="Details"
                            asp-route-id="@image.Id"
