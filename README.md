@@ -64,29 +64,6 @@ dotnet ef database update
 dotnet run
 ```
 
-Open the local URL displayed in your terminal.
-
-> Some features require registration and login. Administrator access requires an account assigned to the Admin role.
-
-## 📁 Project Structure
-
-```text
-ArtifyAI/
-├── Controllers/
-├── Data/
-├── Models/
-├── Views/
-│   ├── Home/
-│   ├── AIImages/
-│   ├── AITools/
-│   └── Shared/
-├── wwwroot/
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── Program.cs
-└── ArtifyAI.csproj
-```
 
 ## 🎓 Project Background
 
