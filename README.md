@@ -29,16 +29,6 @@ The project was developed as part of the Web Design and Programming unit at the 
 | Development | Visual Studio Code, .NET SDK |
 | Version Control | Git and GitHub |
 
-## 📸 Screenshots
-
-Screenshots of the application will be added here.
-
-Suggested screenshots:
-- Home page
-- AI Image Gallery
-- AI image details
-- AI Tools page
-- Mobile responsive layout
 
 ## 🚀 Getting Started
 
